@@ -37,11 +37,9 @@ export default function RootLayout({
             <h1 className="text-2xl  font-bold">Scheduling Platform</h1>
             <Link className="border-2 hidden md:block rounded-full p-2" href="/">
             <Avatar className="h-5" >
-  <AvatarFallback>CN</AvatarFallback>
-</Avatar>
+            <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
             </Link>
-           
-
           </div>
         </header>
         <main className="container mx-auto px-4 py-8 flex-grow">
