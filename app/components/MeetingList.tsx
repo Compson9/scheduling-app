@@ -1,4 +1,4 @@
-import { Trash } from "lucide-react";
+import { Trash, Edit } from "lucide-react";
 
 interface Meeting {
   id: number;
@@ -12,9 +12,14 @@ interface Meeting {
 interface MeetingListProps {
   meetings: Meeting[];
   onDeleteMeeting: (id: number) => void;
+  onEditMeeting: (meeting: Meeting) => void;
 }
 
-export default function MeetingList({ meetings, onDeleteMeeting }: MeetingListProps) {
+export default function MeetingList({
+  meetings,
+  onDeleteMeeting,
+  onEditMeeting,
+}: MeetingListProps) {
   if (meetings.length === 0) {
     return (
       <div className="text-center text-gray-600">
@@ -30,16 +35,28 @@ export default function MeetingList({ meetings, onDeleteMeeting }: MeetingListPr
           key={meeting.id}
           className="bg-white p-6 shadow-md rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
         >
-          {/* Header with Title and Delete Button */}
+          {/* Header with Title and Actions */}
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-bold text-gray-800">{meeting.title}</h3>
-            <button
-              onClick={() => onDeleteMeeting(meeting.id)}
-              className="text-red-600 hover:text-red-800"
-              aria-label="Delete meeting"
-            >
-              <Trash className="h-5 w-5" />
-            </button>
+            <div className="flex space-x-2">
+              {/* Edit Button */}
+              <button
+                onClick={() => onEditMeeting(meeting)}
+                className="text-blue-600 hover:text-blue-800"
+                aria-label="Edit meeting"
+              >
+                <Edit className="h-5 w-5" />
+              </button>
+
+              {/* Delete Button */}
+              <button
+                onClick={() => onDeleteMeeting(meeting.id)}
+                className="text-red-600 hover:text-red-800"
+                aria-label="Delete meeting"
+              >
+                <Trash className="h-5 w-5" />
+              </button>
+            </div>
           </div>
 
           {/* Meeting Details */}

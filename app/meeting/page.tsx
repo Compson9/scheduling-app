@@ -7,6 +7,7 @@ import { Meeting } from "../types/Meeting";
 
 export default function MeetingsPage() {
   const [meetings, setMeetings] = useState<Meeting[]>([]);
+  const [editingMeeting, setEditingMeeting] = useState<Meeting | null>(null);
 
   // Function to add a new meeting
   const addMeeting = (newMeeting: Omit<Meeting, "id">) => {
@@ -14,6 +15,16 @@ export default function MeetingsPage() {
       ...prev,
       { ...newMeeting, id: prev.length + 1 },
     ]);
+  };
+
+  // Function to update an existing meeting
+  const updateMeeting = (updatedMeeting: Meeting) => {
+    setMeetings((prev) =>
+      prev.map((meeting) =>
+        meeting.id === updatedMeeting.id ? updatedMeeting : meeting
+      )
+    );
+    setEditingMeeting(null); // Clear editing state after saving
   };
 
   // Function to delete a meeting by ID
@@ -24,11 +35,20 @@ export default function MeetingsPage() {
   return (
     <div className="mt-[100px] space-y-8">
       <section>
-        <MeetingForm onAddMeeting={addMeeting} />
+        <MeetingForm
+          onAddMeeting={addMeeting}
+          onEditMeeting={updateMeeting}
+          editingMeeting={editingMeeting}
+          setEditingMeeting={setEditingMeeting}
+        />
       </section>
       <section>
         <h2 className="text-2xl font-semibold mb-4">Your Scheduled Meetings</h2>
-        <MeetingList meetings={meetings} onDeleteMeeting={deleteMeeting} />
+        <MeetingList
+          meetings={meetings}
+          onDeleteMeeting={deleteMeeting}
+          onEditMeeting={setEditingMeeting}
+        />
       </section>
     </div>
   );
