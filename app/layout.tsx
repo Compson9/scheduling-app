@@ -34,8 +34,8 @@ export default function RootLayout({
             <Link className="font-bold text-2xl cursor-pointer" href="/">
             Xcelsz
             </Link>
-            <h1 className="text-2xl font-bold">Scheduling Platform</h1>
-            <Link className="border-2 rounded-full p-2" href="/">
+            <h1 className="text-2xl  font-bold">Scheduling Platform</h1>
+            <Link className="border-2 hidden md:block rounded-full p-2" href="/">
             <Avatar className="h-5" >
   <AvatarFallback>CN</AvatarFallback>
 </Avatar>
