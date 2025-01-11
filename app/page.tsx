@@ -3,6 +3,7 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 
 import { HeroText } from "./components/HeroText";
 import Link from "next/link";
+import { Iphone15ProDemo } from "@/components/Iphone15Demo";
 
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
       <section className="text-center ">
         <HeroText/>
       </section>
+      <Iphone15ProDemo/>
       {/* Get started Button */}
       <Link href="/meeting" className="lg:mt-[-110px] mt-[-80px]  ">
       <RainbowButton>Get Started </RainbowButton>
